@@ -44,10 +44,26 @@ h6 {
     @include sans-serif-font;
 }
 
+small.light {
+    color: darken(white, 20%)
+}
+
 p {
     font-size: 16px;
     line-height: 1.5;
     margin-bottom: 20px;
+}
+
+.thick {
+    font-weight: 700;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.add-default-margin {
+    margin-top: 30px;
 }
 
 .bg-primary {
@@ -55,7 +71,7 @@ p {
 }
 
 .bg-dark {
-    background-color: $theme-dark;
+    background-color: darken($theme-dark, 10%);
     color: white;
 }
 
@@ -194,6 +210,9 @@ header {
                 font-size: 16px;
                 margin-bottom: 50px;
             }
+            .header-btn {
+                background-color: rgba(0,0,0,0.7);
+            }
         }
     }
 
@@ -225,6 +244,7 @@ header {
 
 .section-heading {
     margin-top: 0;
+    font-weight: 700;
 }
 
 .service-box {
@@ -294,10 +314,32 @@ header {
     }
 }
 
+.portfolio {
+    margin-top: 30px;
+    background-color: white;
+}
+
+.portfolio-caption {
+    padding: 10px 0;
+}
+
+#portfolio {
+    background-color: $theme-dark;
+
+    @media (min-width: 768px) {
+        background: url('../img/projects_bg.png') no-repeat center center scroll;
+        @include background-cover;
+    }
+}
+
 .call-to-action {
     h2 {
         margin: 0 auto 20px;
     }
+}
+
+.text-dark {
+    color: darken($theme-dark, 0.9);
 }
 
 // Bootstrap Overrides
@@ -374,7 +416,7 @@ body {
     padding: 100px 15px 100px;
     width: 100%;
     .big-background-inner {
-        background-color: rgba(0,0,0,0.8);
+        background-color: rgba(0,0,0,0.95);
         border: 2px solid #fff;
         padding: 30px 0;
         h1 {
@@ -437,34 +479,26 @@ body {
 }
  
 a.big-background-btn {
-    @include sans-serif-font;
-    font-size:13px;
-    text-transform:uppercase;
-    text-decoration:none;
-    color:#fff;
-    background:transparent;
-    border:2px solid #fff;
-    padding:10px 14px;
-    cursor:pointer;
-    letter-spacing:2px;
-    text-align:center;
-    display:inline-block;
-    -webkit-transition:.4s background ease;
-    -moz-transition:.4s background ease;
-    -o-transition:.4s background ease;
-    transition:.4s background ease;
+    @include big-btn;
+}
+
+a.big-btn {
+    @include big-btn;
+    color: black;
+    border-color: black;
+    &:hover {
+        border-color: white;
+        background-color: $theme-primary;
+        color: white;
+    }
 }
  
 .big-background-btn:hover {
     color:#fff;
-    background:rgba(255,255,255,0.20)
+    background-color: $theme-primary;
 }
  
 .big-background-default-image {
-    background:url(../images/sunset.jpg);
-    background-repeat:no-repeat;
-    background-position:center center;
-    background-size:cover;
     width:100%;
     height:100%;
     z-index:0;
@@ -486,3 +520,113 @@ a.big-background-btn {
 @media screen and (max-width: 480px) {
     .player{ display: none; }
 }
+
+.portfolio-modal {
+	.modal-content {
+	    border-radius: 0;
+	    background-clip: border-box;
+	    -webkit-box-shadow: none;
+	    box-shadow: none;
+	    border: none;
+	    min-height: 100%;
+	    padding: 100px 0;
+	    text-align: center;
+		h2 {
+	    	margin-bottom: 15px;
+	    	font-size: 3em;
+		}
+		p {
+			margin-bottom: 30px;
+		}
+		p.item-intro {
+			margin: 20px 0 30px;
+			@include serif-font;
+			font-style: italic;
+			font-size: 16px;
+		}
+		ul.list-inline {
+			margin-bottom: 30px;
+			margin-top: 0;
+		}
+		img {
+			margin-bottom: 30px;
+		}
+	}
+    .close-modal {
+        position: absolute;
+        width:75px;
+        height:75px;
+        background-color:transparent;
+        top: 25px;
+        right: 25px;
+        cursor: pointer;
+        &:hover {
+            opacity: 0.3;
+        }
+        .lr {
+            height:75px;
+            width:1px;
+            margin-left:35px;
+            background-color:$theme-dark;
+            transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            /* IE 9 */
+            -webkit-transform: rotate(45deg);
+            /* Safari and Chrome */
+            z-index:1051;
+            .rl {
+                height:75px;
+                width:1px;
+                background-color:$theme-dark;
+                transform: rotate(90deg);
+                -ms-transform: rotate(90deg);
+                /* IE 9 */
+                -webkit-transform: rotate(90deg);
+                /* Safari and Chrome */
+                z-index:1052;
+            }            
+        }        
+    }
+    .modal-backdrop {
+    	opacity: 0;
+    	display: none;
+    }
+}
+
+.scroll-top-wrapper {
+    position: fixed;
+	opacity: 0;
+	visibility: hidden;
+	overflow: hidden;
+	text-align: center;
+	z-index: 100;
+    background-color: darken($theme-dark, 5);
+	color: #eeeeee;
+	width: 50px;
+	height: 48px;
+	line-height: 48px;
+	right: 30px;
+	bottom: 30px;
+	padding-top: 2px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+.scroll-top-wrapper:hover {
+	background-color: #888888;
+}
+.scroll-top-wrapper.show {
+    visibility:visible;
+    cursor:pointer;
+	opacity: 1.0;
+}
+.scroll-top-wrapper i.fa {
+	line-height: inherit;
+}
+
